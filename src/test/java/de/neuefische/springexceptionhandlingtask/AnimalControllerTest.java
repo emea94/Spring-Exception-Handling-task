@@ -33,6 +33,7 @@ class AnimalControllerTest {
                         }
                 """));
                 // Mit JsonPath kann man checken, ob Feld vorhanden oder befüllt ist, aber nicht den tatsächlichen Wert
+                // Das macht vor allem Sinn bei ID oder Ist-Zeit Angaben
                 // .andExcept(MockMvcResultMatchers.jsonPath("$.timestamp").isNotEmpty());
     }
 }
