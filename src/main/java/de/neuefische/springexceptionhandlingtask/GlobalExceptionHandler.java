@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.time.LocalDateTime;
 
 @ControllerAdvice
+//Alternativ auch @RestControllerAdvice - Kindklasse von ControllerAdvice
 public class GlobalExceptionHandler {
 
+    // Da beide Methoden dieselbe Exception haben, macht es absolut Sinn den Handler global zu machen.
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorMessage> handleIllegalArgumentException(IllegalArgumentException exception) {
 
@@ -26,9 +28,9 @@ public class GlobalExceptionHandler {
 
         ErrorMessage errorMessage = new ErrorMessage(
                 exception.getMessage(),
-                HttpStatus.I_AM_A_TEAPOT,
+                HttpStatus.INTERNAL_SERVER_ERROR,
                 LocalDateTime.now()
         );
-        return new ResponseEntity<>(errorMessage, HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>(errorMessage, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

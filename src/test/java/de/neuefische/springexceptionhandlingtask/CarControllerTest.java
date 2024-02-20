@@ -21,7 +21,7 @@ class CarControllerTest {
     @Test
     public void getCarBrand_whenBrandIsVW_ThenReturnExceptionHandling() throws Exception {
         mvc.perform(get("/api/cars/vw")
-                        .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isMethodNotAllowed());
     }
 }

@@ -25,6 +25,14 @@ class AnimalControllerTest {
     public void getAnimalSpecies_whenSpeciesIsCat_ThenReturnExceptionHandling() throws Exception {
         mvc.perform(get("/api/animals/cat")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isMethodNotAllowed());
+                .andExpect(MockMvcResultMatchers.status().isMethodNotAllowed())
+                .andExpect(MockMvcResultMatchers.content().json("""
+                        {
+                            "errorMsg": "Only 'dog' is allowed",
+                            "errorCode": "METHOD_NOT_ALLOWED"
+                        }
+                """));
+                // Mit JsonPath kann man checken, ob Feld vorhanden oder befüllt ist, aber nicht den tatsächlichen Wert
+                // .andExcept(MockMvcResultMatchers.jsonPath("$.timestamp").isNotEmpty());
     }
 }
